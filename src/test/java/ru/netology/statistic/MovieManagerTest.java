@@ -1,9 +1,9 @@
 package ru.netology.statistic;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class MovieManagerTest {
 
@@ -11,9 +11,8 @@ public class MovieManagerTest {
     public void testAddMovie() {
         MovieManager manager = new MovieManager();
         manager.addMovie("Бладшот");
-        List<String> movies = manager.findAll();
-        assertEquals(1, movies.size());
-        assertEquals("Бладшот", movies.get(0));
+        String[] movies = manager.findAll().toArray(new String[0]);
+        assertArrayEquals(new String[]{"Бладшот"}, movies);
     }
 
     @Test
@@ -22,11 +21,8 @@ public class MovieManagerTest {
         manager.addMovie("Бладшот");
         manager.addMovie("Вперёд");
         manager.addMovie("Отель 'Белград'");
-        List<String> movies = manager.findAll();
-        assertEquals(3, movies.size());
-        assertEquals("Бладшот", movies.get(0));
-        assertEquals("Вперёд", movies.get(1));
-        assertEquals("Отель 'Белград'", movies.get(2));
+        String[] movies = manager.findAll().toArray(new String[0]);
+        assertArrayEquals(new String[]{"Бладшот", "Вперёд", "Отель 'Белград'"}, movies);
     }
 
     @Test
@@ -38,13 +34,14 @@ public class MovieManagerTest {
         manager.addMovie("Джентльмены");
         manager.addMovie("Человек-невидимка");
         manager.addMovie("Тролли. Мировой тур");
-        List<String> movies = manager.findLast();
-        assertEquals(5, movies.size());
-        assertEquals("Тролли. Мировой тур", movies.get(0));
-        assertEquals("Человек-невидимка", movies.get(1));
-        assertEquals("Джентльмены", movies.get(2));
-        assertEquals("Отель 'Белград'", movies.get(3));
-        assertEquals("Вперёд", movies.get(4));
+        String[] movies = manager.findLast().toArray(new String[0]);
+        assertArrayEquals(new String[]{
+                "Тролли. Мировой тур",
+                "Человек-невидимка",
+                "Джентльмены",
+                "Отель 'Белград'",
+                "Вперёд"
+        }, movies);
     }
 
     @Test
@@ -55,11 +52,11 @@ public class MovieManagerTest {
         manager.addMovie("Отель 'Белград'");
         manager.addMovie("Джентльмены");
         manager.addMovie("Человек-невидимка");
-        List<String> movies = manager.findLast();
-        assertEquals(3, movies.size());
-        assertEquals("Человек-невидимка", movies.get(0));
-        assertEquals("Джентльмены", movies.get(1));
-        assertEquals("Отель 'Белград'", movies.get(2));
+        String[] movies = manager.findLast().toArray(new String[0]);
+        assertArrayEquals(new String[]{
+                "Человек-невидимка",
+                "Джентльмены",
+                "Отель 'Белград'"
+        }, movies);
     }
 }
-
