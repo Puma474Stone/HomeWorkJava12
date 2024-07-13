@@ -1,9 +1,8 @@
 package ru.netology.statistic;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class MovieManager {
-    private List<String> movies = new ArrayList<>();
+    private String[] movies = new String[0];
     private int limit;
 
     public MovieManager() {
@@ -15,20 +14,25 @@ public class MovieManager {
     }
 
     public void addMovie(String movie) {
-        movies.add(movie);
+        int length = movies.length + 1;
+        String[] tmp = new String[length];
+        System.arraycopy(movies, 0, tmp, 0, movies.length);
+        tmp[movies.length] = movie;
+        movies = tmp;
     }
 
-    public List<String> findAll() {
-        return new ArrayList<>(movies);
+    public String[] findAll() {
+        return movies;
     }
 
-    public List<String> findLast() {
-        int resultLength = Math.min(movies.size(), limit);
-        List<String> result = new ArrayList<>(resultLength);
+    public String[] findLast() {
+        int resultLength = Math.min(movies.length, limit);
+        String[] result = new String[resultLength];
         for (int i = 0; i < resultLength; i++) {
-            result.add(movies.get(movies.size() - 1 - i));
+            result[i] = movies[movies.length - 1 - i];
         }
         return result;
     }
 }
+
 
